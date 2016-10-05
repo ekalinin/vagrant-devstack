@@ -13,10 +13,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     print "You can install it by `vagrant plugin install vagrant-cachier`"
   end
 
-  config.vm.box = "precise64-cloud-image"
-  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-
-  config.vm.hostname = "devstack"
+  config.vm.box = "ubuntu/trusty64"
+  # https://bugs.launchpad.net/cloud-images/+bug/1573058
+  #config.vm.box = "bento/ubuntu-16.04"
 
   # eth0: NAT network - is created by default by Vagrant
   # eth1: host-only network - to access the VM using its IP address
@@ -24,8 +23,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider :virtualbox do |vb|
       vb.memory = 4096
-      vb.cpus = 4
-    end
+      vb.cpus = 2
+  end
 
   config.vm.provision :shell, :path => "devstack.sh", :privileged => false, :upload_path => "/home/vagrant/devstack.sh"
 
