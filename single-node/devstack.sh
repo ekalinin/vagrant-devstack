@@ -36,6 +36,11 @@ FIXED_RANGE=10.1.1.0/24
 FIXED_NETWORK_SIZE=256
 FLOATING_RANGE=192.168.42.128/25
 
+# Enable the Ceilometer devstack plugin
+enable_plugin ceilometer https://git.openstack.org/openstack/ceilometer.git $OPENSTACK_VERSION
+
+# Enable the aodh alarming services
+enable_plugin aodh https://git.openstack.org/openstack/aodh $OPENSTACK_VERSION
 EOF
 
 ./stack.sh
